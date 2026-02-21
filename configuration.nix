@@ -14,7 +14,10 @@
     ./modules/system/tune.nix
     ./modules/system/virt.nix
     ./modules/system/kernel/main.nix
+    ./modules/system/kernel/kpatch.nix
+    ./modules/system/kernel/afdo.nix
     ./modules/system/nvidia.nix
+    ./modules/system/fs.nix
 
     ./modules/apps/software.nix
   ];
