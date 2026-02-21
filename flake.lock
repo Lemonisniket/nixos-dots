@@ -43,11 +43,11 @@
     "tkg-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1771187224,
-        "narHash": "sha256-/enVauryhSLDurpjWFxjOhAacUHI6/o4YdNVWeTRmT8=",
+        "lastModified": 1771645433,
+        "narHash": "sha256-CX6hHS4VCUUYXmZ9CXTpgXrqAyYzv3+Z4N9Y6324hZU=",
         "owner": "Frogging-Family",
         "repo": "linux-tkg",
-        "rev": "07aa27a9910c69e5cb6aa67e477e1c6a55c8561a",
+        "rev": "d384a06b85d80f0232d7a1736b1473cb7e616771",
         "type": "github"
       },
       "original": {
