@@ -5,3 +5,4 @@ result-*
 flake.lock.backup
 *.age
 *.sops
+shell/launch-aosp
