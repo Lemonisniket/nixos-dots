@@ -23,7 +23,7 @@ let
     fi
 
     CONFIG_FILE=$(realpath "$1")
-    SRC_DIR="${pkgs.linux_6_19.src}"
+    SRC_DIR="${inputs.linux-src}"
     TMP_SRC=$(mktemp -d)
 
     set -e
