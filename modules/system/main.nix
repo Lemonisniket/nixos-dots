@@ -29,4 +29,12 @@
 
   services.flatpak.enable = true;
   programs.ccache.enable = true;
+
+  systemd.services."systemd-udev-settle".enable = false;
+  
+  services.journald.extraConfig = ''
+    SystemMaxUse=50M
+    MaxRetentionSec=3day
+    RuntimeMaxUse=50M
+  '';
 }
