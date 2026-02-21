@@ -32,5 +32,6 @@
   systemd.settings.Manager.DefaultTimeoutStopSec = "2s";
   nixpkgs.config.checkAssertions = false;
 
+
   system.stateVersion = "25.11"; 
 }

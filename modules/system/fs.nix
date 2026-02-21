@@ -1,40 +1,26 @@
-{ lib, ...}:
+{ config, lib, pkgs, ... }:
 
-  let 
-    commonBtrfsOptions = [ "noatime" "compress=zstd:3" "ssd" "discard=async" "space_cache=v2" ];
-    rootDevice = "/dev/nvme0n1p2";
-    bootDevice = "/dev/nvme0n1p1";
-  in
 {
-  fileSystems = {
-    "/" = { 
-      device = lib.mkForce rootDevice;
-      fsType = "btrfs";
-      options = [ "subvol=@nixos" ] ++ commonBtrfsOptions;
-    };
-
-    "/nix" = { 
-      device = lib.mkForce rootDevice; 
-      fsType = "btrfs"; 
-      options = [ "subvol=@nix" ] ++ commonBtrfsOptions; 
-    };
-
-    "/home" = { 
-      device = lib.mkForce rootDevice; 
-      fsType = "btrfs"; 
-      options = [ "subvol=@home" "nobarrier" "commit=60" ] ++ commonBtrfsOptions; 
-    };
-
-    "/var/log" = {
-      device = lib.mkForce rootDevice;
-      fsType = "btrfs";
-      options = [ "subvol=@nixos" "noatime" "compress=zstd:5" "nobarrier" ];
-    };
-
-    "/boot" = {
-      device = lib.mkForce bootDevice;
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
+  fileSystems."/" = {
+    options = lib.mkForce [ 
+      "compression=zstd" 
+      "background_compression=zstd"
+      "discard" 
+      "noatime" 
+      "str_hash=siphash"
+      "metadata_checksum=xxhash"
+      "data_checksum=xxhash"
+      "promote_whole_nodes"
+    ];
   };
+
+  fileSystems."/boot" = {
+    options = lib.mkForce [ 
+      "umask=0077"
+      "noatime"
+      "flush"
+    ];
+  };
+
+  services.fstrim.enable = lib.mkDefault true;
 }
