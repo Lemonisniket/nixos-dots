@@ -1,12 +1,25 @@
 { pkgs, inputs, lib, perfMode ? false, ... }:
 
 let
+  getVersion = src: 
+    let
+      makefile = builtins.readFile "${src}/Makefile";
+      parse = name: (builtins.match ".*${name} = ([0-9]+).*" makefile);
+      major = builtins.head (parse "VERSION");
+      patch = builtins.head (parse "PATCHLEVEL");
+      sub = builtins.head (parse "SUBLEVEL");
+    in "${major}.${patch}.${sub}";
+
+  actualVersion = getVersion inputs.linux-src;
+  
   tkg-patches = "${inputs.tkg-src}/linux-tkg-patches/6.19";
   llvmPkgs = pkgs.llvmPackages_22;
   
   kConfig = if perfMode then ./conf_debug else ./config;
-  kVersion = if perfMode then "6.19.0-perf-debug" else "6.19.0-tkg-bore";
-  kModVersion = if perfMode then "6.19.0-perf-debug-llvm" else "6.19.0-tkg-bore-llvm";
+  
+  suffix = if perfMode then "-perf-debug" else "-tkg-bore";
+  kVersion = "${actualVersion}${suffix}";
+  kModVersion = "${kVersion}-llvm";
 
   prodKCFlags = [
     "-march=ivybridge" "-O3" "-fprofile-sample-use=${./kernel.afdo}"
@@ -21,15 +34,6 @@ let
   ];
 
 in {
-  boot.kernelParams = [
-    "clocksource=acpi_pm" "tsc=recalibrate" "nowatchdog" "acpi_enforce_resources=lax"
-    "pci=pcie_bus_perf" "pci=noaer" "lp=0" "noserial" "8250.nr_uarts=0" "mitigations=off"
-    "preempt=full" "threadirqs" "skew_tick=1" "nohz_full=1-19" "rcu_nocbs=1-19"
-    "loglevel=3" "irqaffinity=8,9" "isolcpus=2-9" "rcu_nocb_poll" "intel_idle.max_cstate=0"
-    "processor.max_cstate=0" "pcie_aspm=off" "pci=alloc_irq"
-    "nvme_core.default_ps_max_latency=0" "nvidia-drm.modeset=1"
-  ];
-
   boot.kernelPackages = let
     clangStdenv = pkgs.overrideCC llvmPkgs.stdenv llvmPkgs.clang;
     myKernel = (pkgs.linuxKernel.manualConfig {

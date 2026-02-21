@@ -7,21 +7,27 @@
   };
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.loader.timeout = 1;
+
   boot.initrd = {
+    enable = true;
+    systemd.enable = false;
     includeDefaultModules = false;
-    checkJournalingFS = false;
     availableKernelModules = lib.mkForce [];
+    checkJournalingFS = false;
     kernelModules = lib.mkForce [];
-    systemd.enable = true;
-    supportedFilesystems = lib.mkForce [ "btrfs" ];
+    supportedFilesystems = lib.mkForce [ "btrfs" ]; 
+    compressor = "zstd";
+    compressorArgs = [ "-19" ]; 
   };
 
+  hardware.cpu.intel.updateMicrocode = true;
+
   boot.kernelParams = [
-    "clocksource=acpi_pm" "tsc=recalibrate" "nowatchdog" "acpi_enforce_resources=lax"
-    "pci=pcie_bus_perf" "pci=noaer" "lp=0" "noserial" "8250.nr_uarts=0" "mitigations=off"
-    "preempt=full" "threadirqs" "skew_tick=1" "nohz_full=1-19" "rcu_nocbs=1-19"
-    "loglevel=3" "irqaffinity=8,9" "isolcpus=2-9" "rcu_nocb_poll" "intel_idle.max_cstate=0"
-    "processor.max_cstate=0" "pcie_aspm=off" "pci=alloc_irq"
-    "nvme_core.default_ps_max_latency=0" "nvidia-drm.modeset=1"
-  ];
+    "clocksource=acpi_pm" "nowatchdog" "acpi_enforce_resources=lax" "tsc=unstable"
+    "pci=pcie_bus_perf" "pci=noaer" "preempt=voluntary" "skew_tick=1"  "mitigations=off"
+    "rootflags=subvol=@nixos" "loglevel=3" "intel_idle.max_cstate=1" "root=/dev/nvme0n1p2"
+    "rootwait" "processor.max_cstate=1" "pcie_aspm=off" "clearcpuid=229" "notsc" "hpet=disable"
+    "nvidia-drm.modeset=1" "nvme_core.default_ps_max_latency=0" "lpj=5587210"
+    ];
 }
