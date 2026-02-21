@@ -37,4 +37,8 @@
     MaxRetentionSec=3day
     RuntimeMaxUse=50M
   '';
+
+  networking.firewall.enable = false;
+
+  services.chrony.enable = true;
 }
