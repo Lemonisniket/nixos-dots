@@ -14,6 +14,7 @@
     ./modules/system/tune.nix
     ./modules/system/virt.nix
     ./modules/system/kernel/main.nix
+    ./modules/system/nvidia.nix
 
     ./modules/apps/software.nix
   ];
@@ -27,5 +28,6 @@
 
   systemd.settings.Manager.DefaultTimeoutStopSec = "2s";
   nixpkgs.config.checkAssertions = false;
+
   system.stateVersion = "25.11"; 
 }
