@@ -3,11 +3,11 @@
     "linux-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1770584607,
-        "narHash": "sha256-Mq1NVGL7Y7NtEEPdVvskGhG6CeIscTA6YYXdwtEqFG0=",
+        "lastModified": 1771515207,
+        "narHash": "sha256-mYYibe1j01FiRsuY5WQuRFNRHZ28Y7TeU62zPrTgAgY=",
         "owner": "gregkh",
         "repo": "linux",
-        "rev": "05f7e89ab9731565d8a62e3b5d1ec206485eeb0b",
+        "rev": "598cf272195d27d2a45462baa051959dc53690e5",
         "type": "github"
       },
       "original": {
@@ -19,11 +19,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1771008912,
-        "narHash": "sha256-gf2AmWVTs8lEq7z/3ZAsgnZDhWIckkb+ZnAo5RzSxJg=",
+        "lastModified": 1771369470,
+        "narHash": "sha256-0NBlEBKkN3lufyvFegY4TYv5mCNHbi5OmBDrzihbBMQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a82ccc39b39b621151d6732718e3e250109076fa",
+        "rev": "0182a361324364ae3f436a63005877674cf45efb",
         "type": "github"
       },
       "original": {
