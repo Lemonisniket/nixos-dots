@@ -11,6 +11,7 @@
       "metadata_checksum=xxhash"
       "data_checksum=xxhash"
       "promote_whole_nodes"
+      "x-initrd.mount"
     ];
   };
 
