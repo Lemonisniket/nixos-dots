@@ -15,9 +15,9 @@ let
   tkg-patches = "${inputs.tkg-src}/linux-tkg-patches/6.19";
   llvmPkgs = pkgs.llvmPackages_22;
   
-  kConfig = if perfMode then ./conf_debug else ./config;
+  kConfig = if perfMode then ./config else ./conf_debug;
   
-  suffix = if perfMode then "-perf-debug" else "-tkg-bore";
+  suffix = if perfMode then "-tkg-bore" else "-perf-debug";
   kVersion = "${actualVersion}${suffix}";
   kModVersion = "${kVersion}-llvm";
 
@@ -55,7 +55,7 @@ in {
       '';
       makeFlags = (old.makeFlags or []) ++ [
         "LLVM=1" "LLVM_IAS=1" "-j20"
-        "KCFLAGS=${lib.concatStringsSep " " (if perfMode then debugKCFlags else prodKCFlags)}"
+        "KCFLAGS=${lib.concatStringsSep " " (if perfMode then prodKCFlags else debugKCFlags)}"
         "KCPPFLAGS=-fno-semantic-interposition -falign-functions=32"
       ];
     });
