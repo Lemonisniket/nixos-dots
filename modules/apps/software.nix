@@ -46,9 +46,14 @@ in
 
   fonts.packages = with pkgs; [
     noto-fonts noto-fonts-cjk-sans noto-fonts-color-emoji
-    liberation_ttf fira-code fira-code-symbols inter 
-    cantarell-fonts jetbrains-mono cascadia-code
+    liberation_ttf fira-code fira-code-symbols inter  nerd-fonts.geist-mono
+    cantarell-fonts jetbrains-mono cascadia-code google-fonts google-sans-flex
   ];
+
+  fonts.fontconfig.defaultFonts = {
+    sansSerif = [ "Google Sans" "Lexend" ];
+    monospace = [ "GeistMono Nerd Fon" ];
+  };
 
   programs.neovim = {
     enable = true;
