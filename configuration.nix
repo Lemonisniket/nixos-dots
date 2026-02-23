@@ -20,6 +20,8 @@
     ./modules/system/fs.nix
 
     ./modules/apps/software.nix
+
+    ./configs/main.nix
   ];
 
   users.users.lemon = {

@@ -1,5 +1,41 @@
 {
   "nodes": {
+    "google-fonts-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763417512,
+        "narHash": "sha256-midwj/2Ogm/MeCOV9do6wCgq1Y4ai7mn0hljngZpVnY=",
+        "owner": "LineageOS",
+        "repo": "android_external_google-fonts_google-sans-flex",
+        "rev": "d4acee8466031f21beac05367a390e2c080ac7aa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LineageOS",
+        "repo": "android_external_google-fonts_google-sans-flex",
+        "type": "github"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771756436,
+        "narHash": "sha256-Tl2I0YXdhSTufGqAaD1ySh8x+cvVsEI1mJyJg12lxhI=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "5bd3589390b431a63072868a90c0f24771ff4cbb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "linux-src": {
       "flake": false,
       "locked": {
@@ -33,21 +69,57 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1768127708,
+        "narHash": "sha256-1Sm77VfZh3mU0F5OqKABNLWxOuDeHIlcFjsXeeiPazs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ffbc9f8cbaacfb331b6017d5a5abb21a492c9a38",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-unstable",
+        "type": "indirect"
+      }
+    },
+    "quickshell-src": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1771828702,
+        "narHash": "sha256-ii717A9saVvTtn3WIYRV5WG171IL7AuVueUjwjKaLIo=",
+        "ref": "refs/heads/master",
+        "rev": "2cf57f43d5f2a5b139d1f1702c83e126e17f27f8",
+        "revCount": 740,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell/"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell/"
+      }
+    },
     "root": {
       "inputs": {
+        "google-fonts-src": "google-fonts-src",
+        "home-manager": "home-manager",
         "linux-src": "linux-src",
         "nixpkgs": "nixpkgs",
+        "quickshell-src": "quickshell-src",
         "tkg-src": "tkg-src"
       }
     },
     "tkg-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1771645433,
-        "narHash": "sha256-CX6hHS4VCUUYXmZ9CXTpgXrqAyYzv3+Z4N9Y6324hZU=",
+        "lastModified": 1771826976,
+        "narHash": "sha256-n2l4ZMPpdbRCuzrNQZ8Sbs5vIckWiWMYiCYcfng3Dkg=",
         "owner": "Frogging-Family",
         "repo": "linux-tkg",
-        "rev": "d384a06b85d80f0232d7a1736b1473cb7e616771",
+        "rev": "3cf320c14b0614b9ea21e92b7d11194602fa9f8f",
         "type": "github"
       },
       "original": {

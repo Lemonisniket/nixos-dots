@@ -22,6 +22,7 @@ in
     materialgram
     yandex-music
     gimp
+    playerctl
     
     git git-lfs git-repo
     wget curl btop tree
@@ -39,6 +40,16 @@ in
     
     gnome-extension-manager
     android-tools
+
+    wofi
+    hyprpaper
+    grim
+    slurp
+    wl-clipboard
+    matugen
+    swww
+
+    quickshell 
   ]);
 
   programs.nix-ld.enable = true;
@@ -67,4 +78,8 @@ in
     tunMode.enable = true;
   };
 
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
 }
